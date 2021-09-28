@@ -51,7 +51,13 @@ vultr
 ```
 服务器系统
 ```bash
-Debian 10 x64
+Debian 11 x64
+```
+服务器地址
+```bash
+韩国(推荐)
+新加坡(第二)
+日本(第三,用户量过大)
 ```
 并选择对应的 Firewall 和 SSH Key
 ## 创建域名
