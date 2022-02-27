@@ -76,6 +76,8 @@ https://wanwang.aliyun.com/domain/
 在服务器上运行
 ```bash
 bash <(curl -sL https://s.hijk.art/xray.sh)
+or
+wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/Xray_onekey/main/install.sh" && chmod +x install.sh && bash install.sh
 ```
 选择
 ```bash
