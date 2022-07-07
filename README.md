@@ -79,10 +79,8 @@ bash <(curl -sL https://s.hijk.art/xray.sh)
 or
 wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/Xray_onekey/main/install.sh" && chmod +x install.sh && bash install.sh
 ```
-选择
-```bash
-VLESS+TCP+XTLS
-```
+选择并存模式
+
 ## 保存 XRay 安装信息
 保存 XRay 安装输出的uuid，用于客户端的安装
 ## 安装客户端
