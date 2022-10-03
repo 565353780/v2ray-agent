@@ -29,7 +29,7 @@
 在下面网页正中间区域填写要注册的账号密码，点击 Create account
 该网址为我的邀请网址，通过此链接跳转到 vultr 官网注册会有额外奖励
 ```bash
-https://www.vultr.com/?ref=8907594-6G
+https://www.vultr.com/?ref=8907593
 ```
 ### 添加防火墙组
 ```bash
