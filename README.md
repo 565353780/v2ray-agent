@@ -51,7 +51,7 @@ vultr
 ```
 服务器系统
 ```bash
-Debian 11 x64
+Debian 12 x64
 ```
 服务器地址
 ```bash
@@ -75,8 +75,6 @@ https://wanwang.aliyun.com/domain/
 ## 部署 XRay
 在服务器上运行
 ```bash
-bash <(curl -sL https://s.hijk.art/xray.sh)
-or
 wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/Xray_onekey/main/install.sh" && chmod +x install.sh && bash install.sh
 ```
 选择并存模式
@@ -156,5 +154,5 @@ ftp:// (同默认)
 ```
 启用xray情景模式即可
 ## 重新部署
-仅需重新申请服务器，部署 XRay，修改客户端的uuid即可
+仅需重新申请服务器，部署 XRay，修改客户端的 uuid 和 ip 即可
 ## 尽情享用吧~
