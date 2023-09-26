@@ -100,6 +100,9 @@ vasma->7->2
 ```bash
 Win & Mac & Linux:
 https://github.com/zzzgydi/clash-verge/releases
+and download Prerelease-Alpha from
+https://github.com/MetaCubeX/Clash.Meta/releases
+and rename as clash-meta to replace the source file in clash verge folder
 
 Android:
 https://github.com/MatsuriDayo/NekoBoxForAndroid/releases
