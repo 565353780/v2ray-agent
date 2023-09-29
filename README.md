@@ -112,6 +112,25 @@ https://github.com/MatsuriDayo/NekoBoxForAndroid/releases
 
 Profiles 添加订阅链接，之后前往 Proxies 选择节点
 
+#### Extra action only for Mac & Linux
+
+更新 clash-meta 和 provider.yaml 权限
+
+```bash
+if [ "$(uname)" == "Darwin" ]; then
+	sudo chown root /Applications/Clash\ Verge.app/Contents/MacOS/clash-meta
+	sudo chmod +sx /Applications/Clash\ Verge.app/Contents/MacOS/clash-meta
+fi
+
+if [ "$(uname)" == "Linux" ]; then
+	sudo chown root /usr/bin/clash-meta
+	sudo chmod +sx /usr/bin/clash-meta
+fi
+
+sudo chmod 777 $HOME/.config/clash-verge/*_provider.yaml
+```
+
+
 ## 浏览器使用
 
 安装插件
