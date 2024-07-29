@@ -1,137 +1,49 @@
-# XRay 全平台部署
+# Hysteria2 全平台部署
 
-## 1. 创建服务器
+## 0. 写在前面
 
-### 1.1. 注册账户
+Doggygo机场是国内唯一一个支持 Hysteria2 协议的机场
 
-在下面网页正中间区域填写要注册的账号密码，点击 Create account
-该网址为我的邀请网址，通过此链接跳转到 vultr 官网注册会有额外奖励
+该协议能够最大化利用带宽，并有高效伪装流量的能力
 
-```bash
-https://www.vultr.com/?ref=8907593
-```
+建议先通过下方链接注册账户，不出意外应该会附送3天的Hy2协议试用，符合预期再付费！
 
-### 1.2. 添加防火墙组
+注：最好用完这3天，一旦付费会覆盖掉3天的试用流量额度！
 
-```bash
-Products-Firewall-Add Firewall Group:
-Description:allow 22, 80, 443
-Inbound IPv4 Rules:
-accept SSH 22 Anywhere 0.0.0.0/0 +
-accept HTTP 80 Anywhere 0.0.0.0/0 +
-accept HTTPS 443 Anywhere 0.0.0.0/0 +
-```
+## 1. 注册账户
 
-### 1.3. 添加 SSH 公钥
+该网址为我的邀请网址，通过此链接跳转到doggygo官网注册会有3天免费试用
 
 ```bash
-右上角your account name-Profile-SSH Keys-Add SSH Key
+https://www.dg7.top/#/register?code=uE6vAdNl
 ```
 
-### 1.4. 申请服务器
+如果有应急需求，可以多次注册暂时过渡
 
-服务器平台
+个人用下来最划算延迟最低的机场，已代替我的自建服务器方案，如有自建服务器需要请到proxy_details文件夹内看说明
 
-```bash
-vultr
-```
+注：烦请体验后再充值！！！！建议月付！！！！
 
-服务器系统
+## 2. 安装客户端
 
-```bash
-Debian 12 x64
-```
-
-服务器地址
-
-```bash
-韩国(推荐)
-新加坡(第二)
-日本(第三,用户量过大)
-```
-
-并选择对应的 Firewall 和 SSH Key
-
-## 2. 创建域名
-
-域名申请平台
-
-```bash
-阿里云万网域名:
-https://wanwang.aliyun.com/domain/
-```
-
-需要完成
-
-```bash
-实名认证
-```
-
-### 创建 A 记录
-
-在域名解析中创建 A 记录，指向创建的服务器IP
-
-## 部署 XRay
-
-在服务器上运行
-
-```bash
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
-```
-
-选择安装、Tuic安装
-
-```bash
-1
-and
-vasma->6->1
-```
-
-## 获取订阅链接
-
-```bash
-vasma->7->2
-```
-
-## 安装客户端
-
-### 下载客户端
+先上链接，这里能够下载到最新版
 
 ```bash
 Win & Mac & Linux:
-https://github.com/zzzgydi/clash-verge/releases
-and download Prerelease-Alpha from
-https://github.com/MetaCubeX/Clash.Meta/releases
-and rename as clash-meta to replace the source file in clash verge folder
-
+https://github.com/clash-verge-rev/clash-verge-rev/releases
 Android:
 https://github.com/MatsuriDayo/NekoBoxForAndroid/releases
 ```
 
-### 配置客户端
-
-Profiles 添加订阅链接，之后前往 Proxies 选择节点
-
-#### Extra action only for Mac & Linux
-
-更新 clash-meta 和 provider.yaml 权限
+如果打不开github再参考下方备用链接
 
 ```bash
-if [ "$(uname)" == "Darwin" ]; then
-	sudo chown root /Applications/Clash\ Verge.app/Contents/MacOS/clash-meta
-	sudo chmod +sx /Applications/Clash\ Verge.app/Contents/MacOS/clash-meta
-fi
-
-if [ "$(uname)" == "Linux" ]; then
-	sudo chown root /usr/bin/clash-meta
-	sudo chmod +sx /usr/bin/clash-meta
-fi
-
-sudo chmod 777 $HOME/.config/clash-verge/*_provider.yaml
+https://www.dg6.top/#/knowledge
 ```
 
+上面链接中也包含了详细完整的全平台客户端配置方法
 
-## 浏览器使用
+## 3. 浏览器使用
 
 安装插件
 
@@ -142,13 +54,14 @@ SwitchyOmega
 删除所有情景模式并新建情景模式
 
 ```bash
-情景模式名称:xray
+情景模式名称:hy2
 请选择情景模式的类型:代理服务器
-(默认) SOCKS5 127.0.0.1 7890
-http:// HTTP 127.0.0.1 7890
-https:// HTTP 127.0.0.1 7890
+(默认) SOCKS5 127.0.0.1 7897
+http:// HTTP 127.0.0.1 7897
+https:// HTTP 127.0.0.1 7897
 ftp:// (同默认)
 ```
-启用xray情景模式即可
+
+启用hy2情景模式即可
 
 ## 尽情享用吧~
