@@ -76,7 +76,7 @@ https://wanwang.aliyun.com/domain/
 在服务器上运行
 
 ```bash
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/565353780/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
 ```
 
 选择安装、Tuic安装
