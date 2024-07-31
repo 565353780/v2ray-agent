@@ -97,14 +97,14 @@ installTools(){
 }
 # 恢复配置
 resetNginxConfig(){
-    `cp -Rrf /tmp/Wizard89/nginx/nginx.conf /etc/nginx/nginx.conf`
+    `cp -Rrf /tmp/chLi/nginx/nginx.conf /etc/nginx/nginx.conf`
     rm -rf /etc/nginx/conf.d/5NX2O9XQKP.conf
     echoColor green "\n恢复配置完毕"
 }
 # 备份
 bakConfig(){
-    mkdir -p /tmp/Wizard89/nginx
-    `cp -Rrf /etc/nginx/nginx.conf /tmp/Wizard89/nginx/nginx.conf`
+    mkdir -p /tmp/chLi/nginx
+    `cp -Rrf /etc/nginx/nginx.conf /tmp/chLi/nginx/nginx.conf`
 }
 # 安装证书
 installTLS(){
@@ -148,21 +148,21 @@ installTLS(){
         exit 0;
     fi
     sudo ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 >/dev/null
-    ~/.acme.sh/acme.sh --installcert -d ${domain} --fullchainpath /tmp/Wizard89/nginx/${domain}.crt --keypath /tmp/Wizard89/nginx/${domain}.key --ecc >/dev/null
-    if [[ -z `cat /tmp/Wizard89/nginx/${domain}.key` ]]
+    ~/.acme.sh/acme.sh --installcert -d ${domain} --fullchainpath /tmp/chLi/nginx/${domain}.crt --keypath /tmp/chLi/nginx/${domain}.key --ecc >/dev/null
+    if [[ -z `cat /tmp/chLi/nginx/${domain}.key` ]]
     then
         echoColor red "证书key生成失败，请重新运行"
         resetNginxConfig
         exit
-    elif [[ -z `cat /tmp/Wizard89/nginx/${domain}.crt` ]]
+    elif [[ -z `cat /tmp/chLi/nginx/${domain}.crt` ]]
     then
         echoColor red "证书crt生成失败，请重新运行"
         resetNginxConfig
         exit
     fi
     echoColor green "证书生成成功"
-    echoColor green "证书目录/tmp/Wizard89/nginx"
-    ls /tmp/Wizard89/nginx
+    echoColor green "证书目录/tmp/chLi/nginx"
+    ls /tmp/chLi/nginx
 
     resetNginxConfig
     if [[ ${nginxStatus} = 2  ]]
@@ -185,7 +185,7 @@ init(){
     echoColor green "   9.下个版本会加入通配符证书生成[todo]"
     echoColor green "   10.可以生成多个不同域名的证书[包含子域名]，具体速率请查看[https://letsencrypt.org/zh-cn/docs/rate-limits/]"
     echoColor green "   11.兼容Centos、Ubuntu、Debian"
-    echoColor green "   12.Github[https://github.com/Wizard89]"
+    echoColor green "   12.Github[https://github.com/chLi]"
     echoColor red "=============================="
     echoColor yellow "请输入[y]执行脚本，[任意]结束:"
     read isExecStatus

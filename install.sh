@@ -553,9 +553,9 @@ allowPort() {
   # 如果防火墙启动状态则添加相应的开放端口
   if systemctl status netfilter-persistent 2>/dev/null | grep -q "active (exited)"; then
     local updateFirewalldStatus=
-    if ! iptables -L | grep -q "$1/${type}(Wizard89)"; then
+    if ! iptables -L | grep -q "$1/${type}(chLi)"; then
       updateFirewalldStatus=true
-      iptables -I INPUT -p ${type} --dport "$1" -m comment --comment "allow $1/${type}(Wizard89)" -j ACCEPT
+      iptables -I INPUT -p ${type} --dport "$1" -m comment --comment "allow $1/${type}(chLi)" -j ACCEPT
     fi
 
     if echo "${updateFirewalldStatus}" | grep -q "true"; then
@@ -1777,7 +1777,7 @@ nginxBlog() {
     if [[ "${nginxBlogInstallStatus}" == "y" ]]; then
       rm -rf "${nginxStaticPath}"
       randomNum=$((RANDOM % 6 + 1))
-      wget -q -P "${nginxStaticPath}" https://raw.githubusercontent.com/Wizard89/v2ray-agent/master/fodder/blog/unable/html${randomNum}.zip >/dev/null
+      wget -q -P "${nginxStaticPath}" https://raw.githubusercontent.com/565353780/v2ray-agent/master/fodder/blog/unable/html${randomNum}.zip >/dev/null
       unzip -o "${nginxStaticPath}html${randomNum}.zip" -d "${nginxStaticPath}" >/dev/null
       rm -f "${nginxStaticPath}html${randomNum}.zip*"
       echoContent green " ---> 添加伪装站点成功"
@@ -1785,7 +1785,7 @@ nginxBlog() {
   else
     randomNum=$((RANDOM % 6 + 1))
     rm -rf "${nginxStaticPath}"
-    wget -q -P "${nginxStaticPath}" https://raw.githubusercontent.com/Wizard89/v2ray-agent/master/fodder/blog/unable/html${randomNum}.zip >/dev/null
+    wget -q -P "${nginxStaticPath}" https://raw.githubusercontent.com/565353780/v2ray-agent/master/fodder/blog/unable/html${randomNum}.zip >/dev/null
     unzip -o "${nginxStaticPath}html${randomNum}.zip" -d "${nginxStaticPath}" >/dev/null
     rm -f "${nginxStaticPath}html${randomNum}.zip*"
     echoContent green " ---> 添加伪装站点成功"
@@ -2918,9 +2918,9 @@ hysteriaPortHopping() {
       #                echoContent red " ---> 选择错误"
       #                hysteriaPortHopping
       #            else
-      iptables -t nat -A PREROUTING -p udp --dport "${portStart}:${portEnd}" -m comment --comment "Wizard89_portHopping" -j DNAT --to-destination :${hysteriaPort}
+      iptables -t nat -A PREROUTING -p udp --dport "${portStart}:${portEnd}" -m comment --comment "chLi_portHopping" -j DNAT --to-destination :${hysteriaPort}
 
-      if iptables-save | grep -q "Wizard89_portHopping"; then
+      if iptables-save | grep -q "chLi_portHopping"; then
         allowPort "${portStart}:${portEnd}" udp
         echoContent green " ---> 端口跳跃添加成功"
       else
@@ -2936,9 +2936,9 @@ hysteriaPortHopping() {
 readHysteriaPortHopping() {
   if [[ -n "${hysteriaPort}" ]]; then
     #        interfaceName=$(ip -4 addr show | awk '/inet /{print $NF ":" $2}' | awk '{print ""NR""":"$0}' | grep "${selectInterface}:" | awk -F "[:]" '{print $2}')
-    if iptables-save | grep -q "Wizard89_portHopping"; then
+    if iptables-save | grep -q "chLi_portHopping"; then
       portHopping=
-      portHopping=$(iptables-save | grep "Wizard89_portHopping" | cut -d " " -f 8)
+      portHopping=$(iptables-save | grep "chLi_portHopping" | cut -d " " -f 8)
       portHoppingStart=$(echo "${portHopping}" | cut -d ":" -f 1)
       portHoppingEnd=$(echo "${portHopping}" | cut -d ":" -f 2)
     fi
@@ -2947,7 +2947,7 @@ readHysteriaPortHopping() {
 
 # 删除hysteria 端口条约iptables规则
 deleteHysteriaPortHoppingRules() {
-  iptables -t nat -L PREROUTING --line-numbers | grep "Wizard89_portHopping" | awk '{print $1}' | while read -r line; do
+  iptables -t nat -L PREROUTING --line-numbers | grep "chLi_portHopping" | awk '{print $1}' | while read -r line; do
     iptables -t nat -D PREROUTING 1
   done
 }
@@ -4267,7 +4267,7 @@ customCDNIP() {
   echoContent red "\n=============================================================="
   echoContent yellow "# 注意事项"
   echoContent yellow "\n教程地址:"
-  echoContent skyBlue "https://github.com/Wizard89/v2ray-agent/blob/master/documents/optimize_V2Ray.md"
+  echoContent skyBlue "https://github.com/chLi/v2ray-agent/blob/master/documents/optimize_V2Ray.md"
   echoContent red "\n如对Cloudflare优化不了解，请不要使用"
   echoContent yellow "\n 1.CNAME www.digitalocean.com"
   echoContent yellow " 2.CNAME www.cloudflare.com"
@@ -4935,7 +4935,7 @@ updateNginxBlog() {
   if [[ "${selectInstallNginxBlogType}" =~ ^[1-9]$ ]]; then
     rm -rf "${nginxStaticPath}"
 
-    wget -q -P "${nginxStaticPath}" "https://raw.githubusercontent.com/Wizard89/v2ray-agent/master/fodder/blog/unable/html${selectInstallNginxBlogType}.zip" >/dev/null
+    wget -q -P "${nginxStaticPath}" "https://raw.githubusercontent.com/chLi/v2ray-agent/master/fodder/blog/unable/html${selectInstallNginxBlogType}.zip" >/dev/null
 
     unzip -o "${nginxStaticPath}html${selectInstallNginxBlogType}.zip" -d "${nginxStaticPath}" >/dev/null
     rm -f "${nginxStaticPath}html${selectInstallNginxBlogType}.zip*"
@@ -5469,9 +5469,9 @@ updateV2RayAgent() {
   echoContent skyBlue "\n进度  $1/${totalProgress} : 更新v2ray-agent脚本"
   rm -rf /etc/v2ray-agent/install.sh
   #    if wget --help | grep -q show-progress; then
-  wget -c -q --show-progress -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/Wizard89/v2ray-agent/master/install.sh"
+  wget -c -q --show-progress -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/chLi/v2ray-agent/master/install.sh"
   #    else
-  #        wget -c -q -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/Wizard89/v2ray-agent/master/install.sh"
+  #        wget -c -q -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/chLi/v2ray-agent/master/install.sh"
   #    fi
 
   sudo chmod 700 /etc/v2ray-agent/install.sh
@@ -5482,7 +5482,7 @@ updateV2RayAgent() {
   echoContent yellow " ---> 请手动执行[vasma]打开脚本"
   echoContent green " ---> 当前版本：${version}\n"
   echoContent yellow "如更新不成功，请手动执行下面命令\n"
-  echoContent skyBlue "wget -P /root -N --no-check-certificate https://raw.githubusercontent.com/Wizard89/v2ray-agent/master/install.sh && chmod 700 /root/install.sh && /root/install.sh"
+  echoContent skyBlue "wget -P /root -N --no-check-certificate https://raw.githubusercontent.com/chLi/v2ray-agent/master/install.sh && chmod 700 /root/install.sh && /root/install.sh"
   echo
   exit 0
 }
@@ -5612,7 +5612,7 @@ EOF
 # 脚本快捷方式
 aliasInstall() {
 
-  if [[ -f "$HOME/install.sh" ]] && [[ -d "/etc/v2ray-agent" ]] && grep <"$HOME/install.sh" -q "作者:Wizard89"; then
+  if [[ -f "$HOME/install.sh" ]] && [[ -d "/etc/v2ray-agent" ]] && grep <"$HOME/install.sh" -q "作者:chLi"; then
     mv "$HOME/install.sh" /etc/v2ray-agent/install.sh
     local vasmaType=
     if [[ -d "/usr/bin/" ]]; then
